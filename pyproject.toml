@@ -1,0 +1,11 @@
+[project]
+name = "voice"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "anthropic>=0.85.0",
+    "pipecat-ai[daily,cartesia,openai,silero]>=0.0.36",
+    "python-dotenv>=1.2.1",
+]
