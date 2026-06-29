@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f97316"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="620" rx="12" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Taglish AI Voice Agent — Architecture</text>
+
+  <!-- 1. Zapier / n8n box -->
+  <rect x="340" y="65" width="280" height="52" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="96" text-anchor="middle" font-size="14" font-weight="600" fill="#334155">Zapier · n8n · make.com</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="117" x2="480" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="408" y="122" width="144" height="18" rx="4" fill="#e2e8f0"/>
+  <text x="480" y="135" text-anchor="middle" font-size="11" font-weight="500" fill="#475569">POST /start-call</text>
+
+  <!-- 2. FastAPI Server box -->
+  <rect x="280" y="150" width="400" height="100" rx="10" fill="url(#blue)" filter="url(#shadow)"/>
+  <text x="480" y="178" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">server.py  (FastAPI)</text>
+  <text x="480" y="200" text-anchor="middle" font-size="12" fill="#bfdbfe">Auto-creates Daily room via REST API</text>
+  <text x="480" y="218" text-anchor="middle" font-size="12" fill="#bfdbfe">Spawns bot session per caller</text>
+  <text x="480" y="236" text-anchor="middle" font-size="12" fill="#bfdbfe">Returns room_url + session_id</text>
+
+  <!-- Arrow down -->
+  <line x1="480" y1="250" x2="480" y2="285" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="390" y="258" width="180" height="18" rx="4" fill="#e2e8f0"/>
+  <text x="480" y="271" text-anchor="middle" font-size="11" font-weight="500" fill="#475569">Daily room (audio in / out)</text>
+
+  <!-- 3. Pipecat Pipeline box -->
+  <rect x="80" y="300" width="800" height="180" rx="10" fill="#fff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="480" y="328" text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b">Pipecat Pipeline  (allow_interruptions = True)</text>
+
+  <!-- Pipeline services as colored chips -->
+  <!-- STT -->
+  <rect x="120" y="350" width="140" height="44" rx="8" fill="url(#green)"/>
+  <text x="190" y="370" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Cartesia STT</text>
+  <text x="190" y="386" text-anchor="middle" font-size="10" fill="#dcfce7">speech → text</text>
+
+  <!-- Arrow STT → LLM -->
+  <line x1="260" y1="372" x2="360" y2="372" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="310" y="366" text-anchor="middle" font-size="9" fill="#64748b">transcript</text>
+
+  <!-- VAD label -->
+  <rect x="260" y="400" width="100" height="24" rx="6" fill="#e2e8f0"/>
+  <text x="310" y="416" text-anchor="middle" font-size="10" font-weight="500" fill="#475569">Silero VAD</text>
+
+  <!-- LLM -->
+  <rect x="380" y="350" width="160" height="44" rx="8" fill="url(#purple)"/>
+  <text x="460" y="370" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Qwen LLM</text>
+  <text x="460" y="386" text-anchor="middle" font-size="10" fill="#f3e8ff">thinking + tools</text>
+
+  <!-- Arrow LLM → TTS -->
+  <line x1="540" y1="372" x2="640" y2="372" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="590" y="366" text-anchor="middle" font-size="9" fill="#64748b">response</text>
+
+  <!-- TTS -->
+  <rect x="660" y="350" width="140" height="44" rx="8" fill="url(#orange)"/>
+  <text x="730" y="370" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Cartesia TTS</text>
+  <text x="730" y="386" text-anchor="middle" font-size="10" fill="#ffedd5">text → speech</text>
+
+  <!-- Tools section below pipeline -->
+  <rect x="120" y="420" width="200" height="44" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="220" y="440" text-anchor="middle" font-size="11" font-weight="600" fill="#92400e">capture_lead tool</text>
+  <text x="220" y="455" text-anchor="middle" font-size="10" fill="#b45309">name · email · product_interest</text>
+
+  <!-- Transcript section -->
+  <rect x="360" y="420" width="180" height="44" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
+  <text x="450" y="440" text-anchor="middle" font-size="11" font-weight="600" fill="#3730a3">TranscriptCollector</text>
+  <text x="450" y="455" text-anchor="middle" font-size="10" fill="#4338ca">utterances + product detection</text>
+
+  <!-- Arrow from tools to LLM -->
+  <line x1="320" y1="420" x2="420" y2="394" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <!-- Arrow from transcript to pipeline -->
+  <line x1="450" y1="420" x2="480" y2="394" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+  <!-- Arrow down from pipeline -->
+  <line x1="480" y1="480" x2="480" y2="520" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 4. Webhook box -->
+  <rect x="280" y="525" width="400" height="60" rx="10" fill="#fff" stroke="#f97316" stroke-width="2" filter="url(#shadow)"/>
+  <text x="480" y="550" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">POST  WEBHOOK_URL  (call_ended)</text>
+  <text x="480" y="570" text-anchor="middle" font-size="11" fill="#9a3412">transcript · products_discussed · lead_status · duration</text>
+
+  <!-- Left side label: Input -->
+  <rect x="12" y="72" width="52" height="28" rx="6" fill="#e2e8f0"/>
+  <text x="38" y="91" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Input</text>
+
+  <!-- Right side label: Output -->
+  <rect x="896" y="532" width="52" height="28" rx="6" fill="#e2e8f0"/>
+  <text x="922" y="551" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Output</text>
+
+  <!-- Lead capture arrow (dashed, from tools to webhook) -->
+  <path d="M 320 442 Q 280 500 420 530" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,4" fill="none" marker-end="url(#arrow-orange)"/>
+  <rect x="248" y="480" width="90" height="18" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="293" y="493" text-anchor="middle" font-size="9" font-weight="500" fill="#92400e">lead_captured</text>
+</svg>
